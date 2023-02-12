@@ -5,8 +5,8 @@ from django.db import models
 
 class Specialty(models.Model):
     name = models.CharField(max_length=200, unique=True, verbose_name='Название направления')
-    code = models.CharField(max_length=10, verbose_name='Код направления')
-    url = models.URLField(verbose_name="Адрес сайта")
+    code = models.CharField(max_length=10, verbose_name='Код направления', null=True, blank=True)
+    # url = models.URLField(verbose_name="Адрес сайта")
 
     class Meta:
         ordering = ['name']
@@ -26,7 +26,7 @@ TYPES = (
 class Property(models.Model):
     name = models.CharField(max_length=200, unique=True, verbose_name='Название признака')
     quest = models.CharField(max_length=200, verbose_name='Вопрос')
-    typ = models.IntegerField(choices=TYPES, unique=True, verbose_name='Вопрос')
+    typ = models.IntegerField(choices=TYPES, unique=True, verbose_name='Тип')
 
     class Meta:
         ordering = ['name']
@@ -41,8 +41,8 @@ class Inst(models.Model):
     name = models.CharField(max_length=200, unique=True, verbose_name='Институт')
     short_name = models.CharField(max_length=10)
     url = models.URLField(verbose_name="Адрес сайта")
-    specialities = models.ManyToManyField(Specialty)
-    properties = models.ManyToManyField(Property)
+    specialities = models.ManyToManyField(Specialty, null=True, blank=True, verbose_name='Направления')
+    properties = models.ManyToManyField(Property, null=True, blank=True, verbose_name='Признаки')
 
     class Meta:
         ordering = ['short_name']
