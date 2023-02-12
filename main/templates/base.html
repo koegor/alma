@@ -1,20 +1,51 @@
 {% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>
-      Django Sample Site - {% block title %}{% endblock %}
-    </title>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <title>DreamInst site</title>
 
-    <script src="{% static 'main/js/main.js' %}"></script> <!-- This is how to include a static file -->
-    <link rel="stylesheet" href="{% static 'main/css/main.css' %}" type="text/css" />
-    <link rel="shortcut icon" type="image/png" href="{% static 'main/img/favicon.ico' %}"/>
-  </head>
-  <body>
-    <div class="container">
-      {% block pagecontent %}
-      {% endblock %}
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/cover/">
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="{% static 'main/vendor/bootstrap/css/bootstrap.min.css' %}">
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="{% static 'main/css/cover.css' %}" type="text/css"/>
+  <link rel="stylesheet" href="{% static 'main/css/main.css' %}" type="text/css"/>
+  <link rel="shortcut icon" type="image/png" href="{% static 'main/img/favicon.ico' %}"/>
+
+  <script src="{% static 'main/js/main.js' %}"></script> <!-- This is how to include a static file -->
+</head>
+
+
+<body class="text-center bg-image" style="background-image: url('{% static "main/img/mgu.jpg" %}')">
+
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">DreamInst</h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link active" href="{% url 'index' %}">Главная</a>
+{#        <a class="nav-link" href="#">Features</a>#}
+        <a class="nav-link" href="{% url 'contacts' %}">Контакты</a>
+      </nav>
     </div>
-  </body>
+  </header>
+
+  <div>
+    {% block pagecontent %}
+    {% endblock %}
+  </div>
+
+  <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p>Egor&Artem Ko <a href="https://lycc1501.mskobr.ru/" target="_blank">Lyceum 1501</a></p>
+    </div>
+  </footer>
+
+
+</body>
 </html>
