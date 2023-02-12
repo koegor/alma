@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-bw@0np$ev*+(ge_4*n)7z9mq$*sm*n#47z)k6#j#prs2w^@pux
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'dreaminst.site',
+]
 
 
 # Application definition
