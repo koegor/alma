@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bw@0np$ev*+(ge_4*n)7z9mq$*sm*n#47z)k6#j#prs2w^@pux'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
+    'www.dreaminst.site',
     'dreaminst.site',
     'localhost',
 ]
