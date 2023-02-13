@@ -26,7 +26,8 @@ TYPES = (
 class Property(models.Model):
     name = models.CharField(max_length=200, unique=True, verbose_name='Название признака')
     quest = models.CharField(max_length=200, verbose_name='Вопрос')
-    typ = models.IntegerField(choices=TYPES, unique=True, verbose_name='Тип')
+    typ = models.IntegerField(choices=TYPES, null=False, default=0, verbose_name='Тип')
+    num = models.IntegerField(unique=True, default=0, verbose_name='Порядковый номер')
 
     class Meta:
         ordering = ['name']
@@ -39,7 +40,7 @@ class Property(models.Model):
 
 class Inst(models.Model):
     name = models.CharField(max_length=200, unique=True, verbose_name='Институт')
-    short_name = models.CharField(max_length=10)
+    short_name = models.CharField(max_length=10, verbose_name='Краткое название')
     url = models.URLField(verbose_name="Адрес сайта")
     specialities = models.ManyToManyField(Specialty, null=True, blank=True, verbose_name='Направления')
     properties = models.ManyToManyField(Property, null=True, blank=True, verbose_name='Признаки')
