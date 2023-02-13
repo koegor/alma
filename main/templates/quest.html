@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pagecontent %}
+
+  <main role="main" class="inner cover">
+    <h1 class="cover-heading">{{ quest.quest }}</h1>
+{#    <p class="lead">Поиск иснститута вашей мечты</p>#}
+
+    <form action="{% url 'quest' %}" method="post">
+      {% csrf_token %}
+
+{#      {% for var in quest %}#}
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="optradio" id="1" value="1" checked>
+        <label class="form-check-label" style="font-size: 1.5em; margin-left: 10px" for="optradio">
+          Да
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="optradio" id="0" value="0">
+        <label class="form-check-label" style="font-size: 1.5em; margin-left: 10px" for="optradio">
+          Нет
+        </label>
+      </div>
+
+{#      {% endfor %}#}
+      </br></br>
+
+      <input type="hidden" name="quest_num" id="quest_num" value="{{ quest.num }}">
+      <div class="form-group">
+        <input class="btn btn-lg btn-secondary" type="submit" value="Дальше">
+      </div>
+    </form>
+
+  </main>
+
+{% endblock pagecontent %}

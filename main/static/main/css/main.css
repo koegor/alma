@@ -3,3 +3,8 @@
     margin: 10 10 10 10;
     border: 3px solid black;
 }
+
+input[type=radio] {
+    width: 1.5em;
+    height: 1.5em;
+}

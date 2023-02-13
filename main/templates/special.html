@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pagecontent %}
+
+  <main role="main" class="inner cover">
+    <h1 class="cover-heading">Выберите направление</h1>
+{#    <p class="lead">Поиск иснститута вашей мечты</p>#}
+  </br>
+
+    <form action="{% url 'quest' %}" method="post">
+      {% csrf_token %}
+
+      {% for var in specs %}
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="optradio" id="{{ var.id }}" value="{{ var.id }}" {% if forloop.first %}checked{% endif %}>
+        <label class="form-check-label" style="font-size: 1.5em; margin-left: 10px" for="{{ var.id }}">
+          {{ var.name }}
+        </label>
+      </div>
+
+      {% endfor %}
+
+      </br>
+
+      <input type="hidden" name="quest_num" id="quest_num" value="-1">
+
+      <div class="form-group">
+        <input class="btn btn-lg btn-secondary" type="submit" value="Дальше">
+      </div>
+    </form>
+
+  </main>
+
+{% endblock pagecontent %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pagecontent %}
+
+  <main role="main" class="inner cover">
+    <h1 class="cover">Рекомендуемые институты</h1>
+    </br>
+    </br>
+    {% for inst in insts %}
+
+      <p style="font-size: 1.5em">{{ inst.inst__short_name }}. <a href="{{ inst.inst__url }}">{{ inst.inst__name }}</a></p>
+
+    {% empty %}
+      <p style="font-size: 1.5em">Не найдено</p>
+        </br>
+        </br>
+    {% endfor %}
+
+    </br>
+
+    <p class="lead">
+      <a href="{% url 'spec' %}" class="btn btn-lg btn-secondary">Подобрать еще раз</a>
+    </p>
+
+  </main>
+
+{% endblock pagecontent %}
