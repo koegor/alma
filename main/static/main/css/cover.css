@@ -49,6 +49,10 @@ body {
   background-size: cover;
 }
 
+.my-ref {
+  color: rgba(255,255,255,0.8);
+}
+
 /*
  * Header
  */
