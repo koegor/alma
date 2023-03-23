@@ -33,16 +33,6 @@ def spec(request):
 
 
 def quest(request):
-    # if request.user.is_authenticated:
-    #     pass
-    #
-    # events = Article.objects.filter(div_code=0)
-    #
-    # context = {
-    #     'events': events,
-    #     'news': {},
-    # }
-
     resp_id = request.POST.get('optradio')
     quest_num = request.POST.get('quest_num')
 
@@ -64,31 +54,24 @@ def quest(request):
 
 
 def result(request):
-    # if request.user.is_authenticated:
-    #     pass
-    #
-    # events = Article.objects.filter(div_code=0)
-    #
-    # context = {
-    #     'events': events,
-    #     'news': {},
-    # }
+    nums = Property.objects.all().values_list('num')
+    resp = []
+    for i in nums.values():
+        answer = int(request.session.get('quest_%s' % i['num']))
+        if answer:
+            resp.append(i['num'])
 
     spec = request.session.get('spec')
-    insts = Specialty.objects.filter(id=int(spec)).select_related('inst_set').filter(inst__isnull=False).values_list('inst__name', 'inst__short_name', 'inst__url', named=True)
+    insts = Specialty.objects\
+        .filter(id=int(spec))\
+        .select_related('inst_set')\
+        .filter(inst__isnull=False)\
+        .filter(inst__properties__num__in=resp)\
+        .distinct()\
+        .values_list('inst__name', 'inst__short_name', 'inst__url', named=True)
 
     return render(request, 'result.html', {'insts': insts})
 
 
 def contacts(request):
-    # if request.user.is_authenticated:
-    #     pass
-    #
-    # events = Article.objects.filter(div_code=0)
-    #
-    # context = {
-    #     'events': events,
-    #     'news': {},
-    # }
-
     return render(request, 'contacts.html', {})
